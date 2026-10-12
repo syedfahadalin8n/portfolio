@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fahad Ali - AI Automation, n8n, AI Agents, Digital Marketing and AI Video portfolio.">
+<title>Fahad Ali Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single column "workflow" page — hero with a live node chain, then sections read like nodes on a canvas */
+:root{
+  --bg:#F2F5F6; --surface:#FFFFFF; --ink:#0F1A1F; --muted:#56656C; --line:#D5DEE1;
+  --accent:#0B7A66; --accent-soft:#DDF1EC; --wire:#9DB3B9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1316; --surface:#121C20; --ink:#E5EEF0; --muted:#93A6AC; --line:#22323A;
+  --accent:#3CCFAE; --accent-soft:#12312B; --wire:#3A525A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1316; --surface:#121C20; --ink:#E5EEF0; --muted:#93A6AC; --line:#22323A;
+  --accent:#3CCFAE; --accent-soft:#12312B; --wire:#3A525A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:72px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+.hero{display:flex;flex-direction:column;gap:22px}
+.hero h1{font-size:clamp(44px,8vw,88px);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{color:var(--accent)}
+.role{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,28px);max-width:32ch}
+.intro{max-width:62ch;color:var(--muted);font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+
+.chain{display:flex;align-items:center;flex-wrap:wrap;margin-top:8px}
+.node{display:flex;align-items:center;gap:10px;background:var(--surface);border:1.5px solid var(--accent);border-radius:10px;padding:10px 14px;font-family:var(--mono);font-size:13px;white-space:nowrap}
+.node b{font-family:var(--body);font-weight:600;font-size:14px}
+.node i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+.wire{width:34px;height:2px;background:var(--wire);position:relative;overflow:hidden}
+.wire::after{content:"";position:absolute;top:0;left:-12px;width:12px;height:2px;background:var(--accent);animation:flow 1.8s linear infinite}
+@keyframes flow{to{left:34px}}
+@media (prefers-reduced-motion:reduce){.wire::after{animation:none;display:none}}
+@media (max-width:640px){.chain{flex-direction:column;align-items:flex-start}.wire{width:2px;height:18px;margin-left:22px}.wire::after{display:none}}
+
+section{display:flex;flex-direction:column;gap:24px}
+.sec-head{display:flex;flex-direction:column;gap:8px}
+.sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:700}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.skill h3{font-size:19px;font-weight:700}
+.skill p{color:var(--muted);font-size:15px}
+
+.projects{display:flex;flex-direction:column;gap:18px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;grid-template-columns:1fr 1.35fr;gap:28px}
+.proj > *{min-width:0}
+@media (max-width:760px){.proj{grid-template-columns:1fr;gap:16px;padding:20px}}
+.proj h3{font-size:24px;font-weight:700;margin-top:6px}
+.proj .for{font-size:14px;color:var(--muted);margin-top:6px}
+.proj ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.proj li{font-size:15px}
+.shot{margin:0;grid-column:1 / -1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.shot img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.shot figcaption{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.shots3{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1.1fr;gap:14px;align-items:start;min-width:0}
+.shots3 .shot{grid-column:auto}
+.stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (max-width:640px){.shots3{grid-template-columns:1fr}}
+.sub{color:var(--muted);max-width:60ch}
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:900px){.vids{grid-template-columns:repeat(2,1fr)}}
+.vid{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.vid video{display:block;width:100%;aspect-ratio:9/16;max-width:100%;object-fit:cover;border-radius:12px;background:var(--ink);border:1px solid var(--line)}
+.vid figcaption{display:flex;flex-direction:column;gap:2px}
+.vid b{font-family:var(--display);font-size:16px}
+.vid span{font-size:13.5px;color:var(--muted)}
+.pipe{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pipe span{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:6px;background:var(--accent-soft);color:var(--ink)}
+.pipe span+span::before{content:"→ ";color:var(--accent)}
+
+.tools{display:flex;flex-direction:column;gap:14px}
+.toolrow{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:start}
+.toolrow > *{min-width:0}
+.toolrow .chips{gap:6px}
+@media (max-width:640px){.toolrow{grid-template-columns:1fr;gap:6px}}
+
+.contact{background:var(--ink);color:var(--bg);border-radius:18px;padding:36px;display:flex;flex-direction:column;gap:16px}
+.contact h2{font-size:clamp(28px,4.5vw,44px);font-weight:800;color:var(--bg)}
+.contact p{max-width:58ch;opacity:.85}
+.exp{display:flex;flex-direction:column}
+.job{display:grid;grid-template-columns:200px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--line)}
+.job:last-child{border-bottom:1px solid var(--line)}
+.job > *{min-width:0}
+.job .when{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:5px;font-variant-numeric:tabular-nums}
+.job h3{font-size:21px;font-weight:700}
+.job .org{color:var(--muted);font-size:15px;margin-top:2px}
+.job ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:15px}
+@media (max-width:640px){.job{grid-template-columns:1fr;gap:4px}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:6px}
+.ccard{border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.clabel{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.cval{font-family:var(--display);font-size:20px;font-weight:700;overflow-wrap:anywhere;user-select:all}
+.cactions{display:flex;gap:8px;flex-wrap:wrap}
+.copy,.wa{align-self:flex-start;font-family:var(--mono);font-size:13px;color:var(--bg);background:transparent;border:1px solid currentColor;border-radius:999px;padding:6px 14px;cursor:pointer;text-decoration:none}
+.copy:hover,.wa:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+footer{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center}
+img{max-width:100%}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="label">Portfolio · 2026</div>
+    <h1>Fahad Ali<span>.</span></h1>
+    <p class="role">AI Automation, n8n &amp; Digital Marketing Specialist</p>
+    <p class="intro">Senior sales agent turned automation builder. Two years of hands-on sales and client management taught me where teams lose time. Now I build n8n workflows and AI agents that take repetitive work off people's desks, and I help brands grow with social media, SEO and AI video.</p>
+
+    <div class="chain" aria-label="Example workflow I build">
+      <div class="node"><i></i><b>Form submitted</b></div>
+      <div class="wire"></div>
+      <div class="node"><i></i><b>AI Agent</b>&nbsp;decides</div>
+      <div class="wire"></div>
+      <div class="node"><i></i><b>Google Sheets</b>&nbsp;saves</div>
+      <div class="wire"></div>
+      <div class="node"><i></i><b>Gmail</b>&nbsp;replies</div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">n8n workflows</span><span class="chip">AI agents</span><span class="chip">AI automation</span>
+      <span class="chip">SEO</span><span class="chip">Digital marketing</span><span class="chip">AI video</span>
+      <span class="chip">Video editing</span><span class="chip">Sales</span>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="sec-head">
+      <div class="label">What I do</div>
+      <h2>Skills I bring to a team</h2>
+    </div>
+    <div class="skills">
+      <div class="skill"><h3>AI Automation &amp; n8n</h3><p>End-to-end workflows that connect forms, Google Sheets, Gmail and Google Drive, including Google Cloud API and OAuth setup.</p></div>
+      <div class="skill"><h3>AI Agents</h3><p>Chat-based AI agents with memory and tools that read and update business data from plain-language requests.</p></div>
+      <div class="skill"><h3>SEO</h3><p>On-page optimisation, keyword research and content that helps websites rank and get found on Google.</p></div>
+      <div class="skill"><h3>Digital Marketing</h3><p>Social media content, campaign planning and audience growth for brands and small businesses.</p></div>
+      <div class="skill"><h3>AI Video &amp; Video Editing</h3><p>AI-generated videos and short-form edits for social media, product promotion and ads, edited in CapCut and KineMaster.</p></div>
+      <div class="skill"><h3>Sales &amp; Account Management</h3><p>Lead generation, client relationships and meeting sales targets, backed by two years as a senior sales agent.</p></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sec-head">
+      <div class="label">Selected work</div>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="projects">
+      <article class="proj">
+        <div>
+          <div class="label">AI Agent</div>
+          <h3>AI Inventory Agent</h3>
+          <p class="for">Chat assistant that manages stock and prices</p>
+          <div class="pipe"><span>Chat message</span><span>AI Agent</span><span>Read sheet</span><span>Update row</span></div>
+        </div>
+        <ul>
+          <li>Staff type plain-language requests such as "Set the keyboard price to 3,700" or "Add 50 USB cables".</li>
+          <li>The agent finds the product, calculates the new stock, updates price and quantity, and sets the restock status from the reorder level.</li>
+          <li>Built with an n8n AI Agent, Google Gemini chat model, conversation memory and two Google Sheets tools (read and update).</li>
+          <li>Instructed to keep untouched fields safe, so changing one value never erases another.</li>
+        </ul>
+        <figure class="shot">
+          <img src="inv.jpg" alt="n8n canvas: chat trigger connected to an AI Agent with Gemini model, memory and two Google Sheets tools" loading="lazy">
+          <figcaption>The live workflow in n8n: chat trigger, AI Agent, Gemini model, memory and Google Sheets tools.</figcaption>
+        </figure>
+      </article>
+
+      <article class="proj">
+        <div>
+          <div class="label">Workflow Automation</div>
+          <h3>Lead Capture &amp; Auto-Confirmation</h3>
+          <p class="for">Form → Google Sheets → Gmail</p>
+          <div class="pipe"><span>Form</span><span>Google Sheets</span><span>Gmail</span></div>
+        </div>
+        <ul>
+          <li>Every form submission is saved to Google Sheets automatically, with name, email, phone and date.</li>
+          <li>The person instantly receives a personalised confirmation email addressed by name.</li>
+          <li>Set up the Google Cloud project, enabled the Sheets, Drive and Gmail APIs, and configured OAuth credentials.</li>
+          <li>Useful for registrations, enquiries, bookings and lead collection.</li>
+        </ul>
+        <div class="shots3">
+          <figure class="shot"><img src="form.jpg" alt="Registration form with Name, Email and Phone fields" loading="lazy"><figcaption>1. Customer fills the form</figcaption></figure>
+          <div class="stack">
+            <figure class="shot"><img src="sheet.jpg" alt="Google Sheet with the new row saved" loading="lazy"><figcaption>2. Row saved to Google Sheets</figcaption></figure>
+            <figure class="shot"><img src="mail.jpg" alt="Confirmation email received in Gmail" loading="lazy"><figcaption>3. Confirmation email arrives</figcaption></figure>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="sec-head">
+      <div class="label">Video work</div>
+      <h2>AI videos &amp; edits</h2>
+      <p class="sub">Short-form vertical videos made with AI video generation and edited in CapCut. Tap to play with sound.</p>
+    </div>
+    <div class="vids">
+      <figure class="vid">
+        <video controls playsinline preload="none" poster="vid/p1.jpg"><source src="vid/v1.mp4" type="video/mp4"></video>
+        <figcaption><b>AI Podcast Avatar</b><span>AI-generated talking-head clip for a motivational short</span></figcaption>
+      </figure>
+      <figure class="vid">
+        <video controls playsinline preload="none" poster="vid/p2.jpg"><source src="vid/v2.mp4" type="video/mp4"></video>
+        <figcaption><b>Podcast Reel with Captions</b><span>AI presenter with bold animated captions, edited in CapCut</span></figcaption>
+      </figure>
+      <figure class="vid">
+        <video controls playsinline preload="none" poster="vid/p3.jpg"><source src="vid/v3.mp4" type="video/mp4"></video>
+        <figcaption><b>AI Lifestyle Reel</b><span>AI influencer-style video for social media content</span></figcaption>
+      </figure>
+      <figure class="vid">
+        <video controls playsinline preload="none" poster="vid/p4.jpg"><source src="vid/v4.mp4" type="video/mp4"></video>
+        <figcaption><b>Motivational Short</b><span>Talking-head reel with on-screen subtitles</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head">
+      <div class="label">Experience</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="exp">
+      <div class="job">
+        <div class="when">2023 – 2025</div>
+        <div>
+          <h3>Senior Sales Agent</h3>
+          <p class="org">Pexdel (Private) Limited</p>
+          <ul>
+            <li>Generated leads and managed client accounts from first contact to closing.</li>
+            <li>Handled customer interactions and resolved their queries.</li>
+            <li>Achieved sales targets and maintained strong client relationships.</li>
+            <li>Contributed to team sales performance and business growth.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Jan 2024 – Sep 2025</div>
+        <div>
+          <h3>Social Media Marketing Executive</h3>
+          <p class="org">Freelance</p>
+          <ul>
+            <li>Managed social media accounts and created engaging content.</li>
+            <li>Responded to customer inquiries and handled messages.</li>
+            <li>Improved customer engagement and brand visibility through online marketing strategies.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head">
+      <div class="label">Education</div>
+      <h2>Education</h2>
+    </div>
+    <div class="exp">
+      <div class="job">
+        <div class="when">Intermediate</div>
+        <div>
+          <h3>Intermediate (FA, Faculty of Arts)</h3>
+          <p class="org">Higher Secondary Certificate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strengths">
+    <div class="sec-head">
+      <div class="label">Strengths</div>
+      <h2>How I work</h2>
+    </div>
+    <div class="chips">
+      <span class="chip">Hardworking</span><span class="chip">Quick learner</span><span class="chip">Time management</span>
+      <span class="chip">Problem solving</span><span class="chip">Lead generation</span><span class="chip">Account management</span>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="sec-head">
+      <div class="label">Toolkit</div>
+      <h2>Tools I use</h2>
+    </div>
+    <div class="tools">
+      <div class="toolrow"><div class="label">Automation</div><div class="chips"><span class="chip">n8n</span><span class="chip">Make.com</span><span class="chip">Google Cloud</span><span class="chip">Google Sheets</span><span class="chip">Gmail</span><span class="chip">Google Drive</span></div></div>
+      <div class="toolrow"><div class="label">AI</div><div class="chips"><span class="chip">LLM models</span><span class="chip">Google Gemini</span><span class="chip">AI agents &amp; tools</span></div></div>
+      <div class="toolrow"><div class="label">Marketing</div><div class="chips"><span class="chip">SEO</span><span class="chip">Social media marketing</span><span class="chip">Digital marketing</span></div></div>
+      <div class="toolrow"><div class="label">Video</div><div class="chips"><span class="chip">CapCut</span><span class="chip">KineMaster</span><span class="chip">AI video generation</span><span class="chip">Short-form editing</span></div></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="label" style="color:var(--accent)">Contact</div>
+    <h2>Let's automate the busywork.</h2>
+    <p>Happy to walk through any of these workflows live and talk about how I can help your team save time and grow.</p>
+    <div class="cards">
+      <div class="ccard">
+        <span class="clabel">Email</span>
+        <span class="cval" id="c-email">syedfahadali9t9@gmail.com</span>
+        <button type="button" class="copy" data-target="c-email">Copy</button>
+      </div>
+      <div class="ccard">
+        <span class="clabel">WhatsApp</span>
+        <span class="cval" id="c-wa">0320 4348359</span>
+        <div class="cactions">
+          <button type="button" class="copy" data-target="c-wa">Copy</button>
+          <a class="wa" href="https://wa.me/923204348359" target="_blank" rel="noopener">Open chat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Fahad Ali · AI Automation &amp; Digital Marketing</footer>
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.target);
+    var text=el.textContent.trim();
+    function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1500)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press Ctrl+C'}
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  });
+});
+</script>
+
+</body>
+</html>
